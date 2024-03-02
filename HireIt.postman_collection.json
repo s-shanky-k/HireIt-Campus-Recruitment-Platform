@@ -1,11 +1,48 @@
 {
 	"info": {
-		"_postman_id": "2b5d6bc0-2743-416c-9d2d-280ba1b5ce04",
-		"name": "HireIt",
+		"_postman_id": "77adb77e-94f2-4164-a329-41f254bf9b43",
+		"name": "HireIt Updated",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "31368976"
+		"_exporter_id": "14036183"
 	},
 	"item": [
+		{
+			"name": "Recruiter",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"recruiter_id\":1,\r\n    \"pwd\": \"xD9$Tm8WzY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/recruiter/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"recruiter",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Company",
 			"item": [
@@ -51,7 +88,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \"job_title\": \"App Developer\",\n    \"salary\": 50000,\n    \"location\": \"San Jose\",\n    \"job_type\": \"Internship\",\n    \"company_id\": 1,\n    \"skill_names\": [\"Product Development\", \"Computer Networking\"]}",
+							"raw": "{   \"job_id\": 98765,\n    \"job_title\": \"Software Developer\",\n    \"salary\": 50000,\n    \"location\": \"Chicago\",\n    \"job_type\": \"Internship\",\n    \"company_id\": 1}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -82,7 +119,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/company/delete/11131",
+							"raw": "http://127.0.0.1:5000/company/delete/98765",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -94,7 +131,7 @@
 							"path": [
 								"company",
 								"delete",
-								"11131"
+								"98765"
 							]
 						}
 					},
@@ -107,7 +144,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"company_id\": 1,\n\"count\": 0}",
+							"raw": "{\"company_id\": 1, \"count\": 1}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -139,7 +176,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \"job_id\": 2,\n    \"student_id\": 1,\n    \"status\": \"Accepted\"}",
+							"raw": "{   \"job_id\": 1002,\n    \"student_id\": 334,\n    \"status\": \"Pending\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -163,102 +200,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "close job",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"job_id\": 11129}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/company/close",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"company",
-								"close"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "fetch students by skills",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"job_id\": 1}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/company/students_by_skills",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"company",
-								"students_by_skills"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "stats",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"company_id\": 1}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/company/stats",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"company",
-								"stats"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -267,15 +208,12 @@
 			"item": [
 				{
 					"name": "fetch jobs",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"student_id\": 1}",
+							"raw": "{\r\n    \"student_id\": 1,\r\n    \"count\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -307,7 +245,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \"student_id\": 1,\n    \"company_name\": \"adidas\"\n}",
+							"raw": "{\"company_name\": \"adidas\",\r\n\"student_id\": 1}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -334,15 +272,12 @@
 				},
 				{
 					"name": "fetch jobs applied",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"student_id\": 1}",
+							"raw": "{\"student_id\": 1, \"count\": 10}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -374,7 +309,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"student_id\" : 1,\n\"job_id\": 11129}",
+							"raw": "{\"student_id\" : 1,\n\"job_id\": 121}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -400,13 +335,13 @@
 					"response": []
 				},
 				{
-					"name": "fetch jobs by skills",
+					"name": "login",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"student_id\": 1}",
+							"raw": "{\r\n    \"student_id\":1,\r\n    \"pwd\": \"xD9$Tm8WzY\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -414,18 +349,18 @@
 							}
 						},
 						"url": {
-							"raw": "https://cs411-project-403502.uc.r.appspot.com/student/jobs_by_skills",
-							"protocol": "https",
+							"raw": "http://127.0.0.1:5000/student/login",
+							"protocol": "http",
 							"host": [
-								"cs411-project-403502",
-								"uc",
-								"r",
-								"appspot",
-								"com"
+								"127",
+								"0",
+								"0",
+								"1"
 							],
+							"port": "5000",
 							"path": [
 								"student",
-								"jobs_by_skills"
+								"login"
 							]
 						}
 					},
