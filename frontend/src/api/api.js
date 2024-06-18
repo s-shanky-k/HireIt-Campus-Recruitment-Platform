@@ -55,9 +55,11 @@ export const apiRecruiterLogin = async (credentials) => {
 
 export const apiStudentAllJobPostings = async (params) => {
 	try {
-		const response = await api.post(`${all_job_postings}`, {
-			student_id: params.student_id,
-			count: params.count,
+		const response = await api.get(`${all_job_postings}`, {
+			params: {
+				student_id: params.student_id,
+				count: params.count,
+			},
 		});
 		return response.data;
 	} catch (error) {
@@ -80,9 +82,11 @@ export const apiStudentApplyJob = async (params) => {
 
 export const apiStudentAllApplications = async (params) => {
 	try {
-		const response = await api.post(`${student_applications}`, {
-			student_id: params.student_id,
-			count: params.count,
+		const response = await api.get(`${student_applications}`, {
+			params: {
+				student_id: params.student_id,
+				count: params.count,
+			},
 		});
 		return response.data;
 	} catch (error) {
@@ -92,9 +96,11 @@ export const apiStudentAllApplications = async (params) => {
 
 export const apiStudentFetchByName = async (params) => {
 	try {
-		const response = await api.post(`${student_search_by_name}`, {
-			company_name: params.company_name,
-			student_id: params.student_id,
+		const response = await api.get(`${student_search_by_name}`, {
+			params: {
+				student_id: params.student_id,
+				company_name: params.company_name,
+			},
 		});
 		return response.data;
 	} catch (error) {
@@ -104,9 +110,11 @@ export const apiStudentFetchByName = async (params) => {
 
 export const apiCompanyApplicants = async (params) => {
 	try {
-		const response = await api.post(`${company_applicants}`, {
-			company_id: params.company_id,
-			count: params.count,
+		const response = await api.get(`${company_applicants}`, {
+			params: {
+				company_id: params.company_id,
+				count: params.count,
+			},
 		});
 		return response.data;
 	} catch (error) {
@@ -116,7 +124,7 @@ export const apiCompanyApplicants = async (params) => {
 
 export const apiDecideApplicantStatus = async (params) => {
 	try {
-		const response = await api.post(`${decide_applicant_status}`, {
+		const response = await api.put(`${decide_applicant_status}`, {
 			job_id: params.job_id,
 			student_id: params.student_id,
 			status: params.status,
@@ -129,9 +137,7 @@ export const apiDecideApplicantStatus = async (params) => {
 
 export const apiGetStats = async (params) => {
 	try {
-		const response = await api.post(`${get_stats}`, {
-			company_id: params.company_id,
-		});
+		const response = await api.get(`${get_stats}/${params.company_id}`);
 		return response.data;
 	} catch (error) {
 		return error.response.data;
@@ -140,9 +146,9 @@ export const apiGetStats = async (params) => {
 
 export const apiGetJobsBySkills = async (params) => {
 	try {
-		const response = await api.post(`${get_jobs_by_skills}`, {
-			student_id: params.student_id,
-		});
+		const response = await api.get(
+			`${get_jobs_by_skills}/${params.student_id}`
+		);
 		return response.data;
 	} catch (error) {
 		return error.response.data;
@@ -151,9 +157,9 @@ export const apiGetJobsBySkills = async (params) => {
 
 export const apiStudentsBySkills = async (params) => {
 	try {
-		const response = await api.post(`${get_student_by_skills}`, {
-			job_id: params.job_id,
-		});
+		const response = await api.get(
+			`${get_student_by_skills}/${params.job_id}`
+		);
 		return response.data;
 	} catch (error) {
 		return error.response.data;
@@ -162,7 +168,7 @@ export const apiStudentsBySkills = async (params) => {
 
 export const apiCloseJobs = async (params) => {
 	try {
-		const response = await api.post(`${close_job}`, {
+		const response = await api.put(`${close_job}`, {
 			job_id: params.job_id,
 		});
 		return response.data;
@@ -190,9 +196,7 @@ export const apiCreateJob = async (params) => {
 
 export const apiDeleteJob = async (params) => {
 	try {
-		const response = await api.post(`${delete_job}`, {
-			job_id: params.job_id,
-		});
+		const response = await axios.delete(`${delete_job}/${params.job_id}`);
 		return response.data;
 	} catch (error) {
 		return error.response.data;
@@ -201,9 +205,11 @@ export const apiDeleteJob = async (params) => {
 
 export const apiGetJobPostings = async (params) => {
 	try {
-		const response = await api.post(`${job_postings}`, {
-			company_id: params.company_id,
-			count: params.count,
+		const response = await api.get(`${job_postings}`, {
+			params: {
+				company_id: params.company_id,
+				count: params.count,
+			},
 		});
 		// console.log(response);
 		return response.data;
